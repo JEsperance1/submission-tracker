@@ -1,0 +1,98 @@
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+nav {
+ background: var(--bright-blue);
+  color: white;
+  text-align: left;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+}
+a{
+     background: var(--bright-blue);
+ 
+  text-align: left;
+  color: #f0f0ff;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+  background-color: #7e7a7a;
+}
+
+/* Base table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Inter", sans-serif;
+  min-width: 500px;
+}
+
+/* Header styling */
+th {
+  background: var(--bright-blue);
+  color: white;
+  text-align: left;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+}
+
+/* Body row styling */
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  color: var(--gray-900);
+}
+
+/* Alternating row colors */
+tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Hover effect for rows */
+tbody tr:hover {
+  background: var(--electric-violet, #f0f0ff);
+  cursor: pointer;
+}
+
+/* Optional: first column emphasis */
+tbody td:first-child {
+  font-weight: 500;
+  color: var(--bright-blue);
+}
+
+/* Optional: responsive text wrapping */
+td, th {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+nav {
+ background: var(--bright-blue);
+  color: white;
+  text-align: left;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+}
+a{
+     background: var(--bright-blue);
+ 
+  text-align: left;
+  color: #f0f0ff;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+  background-color: #7e7a7a;
+}

@@ -1,3 +1,39 @@
+.textFieldContainer{
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+ input {
+  margin-bottom: 15px;
+}
+
+}
+
+.header {
+  display: flex;
+  justify-content: center;   
+}
+
+.page
+{
+  display: flex;
+  justify-content: center;  
+  align-items: center;       
+  height: 100vh;             
+  
+}
+
+.button
+ {
+  display: inline-block;
+  padding: 10px 20px;
+  background: black;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+
 nav {
  background: var(--bright-blue);
   color: white;

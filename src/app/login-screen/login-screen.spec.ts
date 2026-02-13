@@ -6,7 +6,7 @@ describe('LoginScreen', () => {
   let component: LoginScreen;
   let fixture: ComponentFixture<LoginScreen>;
 
-  beforeEach(async () => {z
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LoginScreen]
     })

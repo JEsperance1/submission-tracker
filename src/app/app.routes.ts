@@ -6,10 +6,10 @@ import { HistoryScreen } from './history-screen/history-screen';
 import { ProfileScreen } from './profile-screen/profile-screen';
 
 
-export const routes: Routes = [{path: 'dashboard', component: DashboardScreen},
+export const routes: Routes = [ {path: '', component: LoginScreen},
+                                {path: 'dashboard', component: DashboardScreen},
                                 {path: 'login', component: LoginScreen},
                                 {path: 'stats', component: StatsScreen},
                                 {path: 'history', component: HistoryScreen},
                                 {path: 'profile', component: ProfileScreen}
 ];
-

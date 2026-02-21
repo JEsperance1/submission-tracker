@@ -1,32 +1,153 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    min-height: 100vh;  
+    min-width: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
 
+/* SubMISSION Header */
+h1 {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 30px 0;
+    margin: 0;
+    font-size: 3em;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    border-bottom: 3px solid rgba(255,255,255,0.3);
+}
+
+/* Navigation Bar */
 nav {
- background: var(--bright-blue);
-  color: white;
-  text-align: left;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03rem;
+    display: flex;
+    gap: 15px;
+    background: #2575fc;
+    padding: 0.75rem 1rem;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    
 }
-a{
-     background: var(--bright-blue);
- 
-  text-align: left;
-  color: #f0f0ff;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03rem;
-  background-color: #7e7a7a;
+
+nav a, nav button {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
+nav button {
+    padding: 6px 12px;
+    border: none;
+    background: #6a11cb;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+nav a:hover, nav button:hover {
+    background: rgba(255, 255, 255, 0.673);
+}
+
+/* Card Styling */
+.card {
+    background: rgba(255,255,255,0.95);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    max-width: 400px;
+}
+
+/* Card header */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #2575fc;
+}
+
+.card-header button {
+    padding: 6px 12px;
+    border: none;
+    background: #6a11cb;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.card-header button:hover {
+    background: #2575fc;
+    transform: translateY(-2px);
+}
+.subs {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.stats-row {
+  display: flex;
+  align-items: center;     /* vertically center legend with pie */
+  justify-content: center; /* center whole block in card */
+  gap: 40px;
+}
+
+/* This prevents weird stretching */
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically center items */
+  gap: 15px;
+}
+
+/* Small square */
+.legend {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* Colors */
+.yellow { background: #ff9800; }
+.green  { background: #4caf50; }
+.red    { background: #f44336; }
+
+/* Pie chart container card */
 .pie-chart {
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
+  margin: 40px auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  align-self: left;
+
   background:
     conic-gradient(
       #4caf50 0% 45%,   /* Success */
-      #f44336 45% 70%, /* Failed */
-      #ff9800 70% 100% /* Other */
+      #f44336 45% 70%,  /* Failed */
+      #ff9800 70% 100%  /* Other */
     );
+}
+
+/* Optional: center everything nicely */
+.stats-container {
+  text-align: center;
 }

@@ -1,20 +1,174 @@
-nav {
- background: var(--bright-blue);
-  color: white;
-  text-align: left;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03rem;
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    min-height: 100vh;  
+    min-width: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
-a{
-     background: var(--bright-blue);
- 
-  text-align: left;
-  color: #f0f0ff;
+
+/* SubMISSION Header */
+h1 {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 30px 0;
+    margin: 0;
+    font-size: 3em;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    border-bottom: 3px solid rgba(255,255,255,0.3);
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    gap: 15px;
+    background: #2575fc;
+    padding: 0.75rem 1rem;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    
+}
+
+nav a, nav button {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+nav button {
+    padding: 6px 12px;
+    border: none;
+    background: #6a11cb;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+nav a:hover, nav button:hover {
+    background: rgba(255, 255, 255, 0.673);
+}
+
+
+
+/* Main card */
+.profile-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Header section */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Avatar circle */
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #4f46e5;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
   font-weight: 600;
-  padding: 0.75rem 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03rem;
-  background-color: #7e7a7a;
+}
+
+/* Name + info */
+.profile-info h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.profile-info p {
+  margin: 4px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Stats grid */
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Individual stat box */
+.stat-box {
+  background: #f9f9ff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: 0.2s ease;
+  border: 1px solid #ececff;
+}
+
+.stat-box h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #4f46e5;
+}
+.profile-section button {
+      padding: 6px 12px;
+    border: none;
+    background: #6a11cb;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.stat-box p {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Hover effect */
+.stat-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Sections (Notes & Goals) */
+.profile-section {
+  margin-bottom: 1.8rem;
+}
+
+.profile-section h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.profile-section ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.profile-section li {
+  margin-bottom: 0.5rem;
+  color: #555;
+  line-height: 1.4;
 }

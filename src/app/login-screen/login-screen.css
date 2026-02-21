@@ -1,56 +1,150 @@
-.textFieldContainer{
-  display: flex;
-  flex-direction: column;
-  width: 150px;
- input {
-  margin-bottom: 15px;
-}
 
-}
+
 
 .header {
-  display: flex;
-  justify-content: center;   
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    background: rgba(18, 109, 200, 0.7); /* semi-transparent background */
+    padding: 20px 40px; /* space around the text */
+    border-radius: 15px; /* rounded edges */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* optional shadow */
 }
 
-.page
-{
-  display: flex;
-  justify-content: center;  
-  align-items: center;       
-  height: 100vh;             
-  
+.header h1 {
+    color: #fff;
+    font-size: 3em;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    margin: 0;
 }
 
-.button
- {
-  display: inline-block;
-  padding: 10px 20px;
-  background: black;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 6px;
+/* General Page Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* purple → blue gradient */
+    margin: 0;
+    padding: 0;
 }
 
+/* Header */
+.header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
 
+.header h1 {
+    color: #fff;
+    font-size: 3em;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Page Container */
+.page {
+    display: flex;
+    justify-content: center;  
+    align-items: center;       
+    height: 100vh;  
+}
+
+/* Login Card */
+.textFieldContainer {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.9); /* slightly transparent white */
+    padding: 30px 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.5);
+}
+
+/* Headings */
+.textFieldContainer h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4a4a4a;
+}
+
+/* Labels & Inputs */
+.textFieldContainer label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    padding-right: 20px;
+}
+
+.textFieldContainer input[type="text"] {
+    width: 90%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    background: #f9f9ff; /* light color for input */
+}
+
+.textFieldContainer input[type="text"]:focus {
+    border-color: #6a11cb;
+    box-shadow: 0 0 8px rgba(106, 17, 203, 0.5); /* purple glow */
+    outline: none;
+    background: #fff;
+}
+
+/* Button */
+.button {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb); /* reverse gradient on hover */
+    transform: translateY(-2px);
+}
+
+/* Navigation */
 nav {
- background: var(--bright-blue);
-  color: white;
-  text-align: left;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03rem;
+    background: #2575fc; /* bright blue nav */
+    color: white;
+    text-align: left;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03rem;
 }
-a{
-     background: var(--bright-blue);
- 
-  text-align: left;
-  color: #f0f0ff;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03rem;
-  background-color: #7e7a7a;
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03rem;
+    background-color: #4a4a4a;
+    border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 450px) {
+    .textFieldContainer {
+        width: 200px;
+        padding: 25px 15px;
+    }
+
+    .header h1 {
+        font-size: 2.2em;
+    }
 }

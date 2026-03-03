@@ -12,10 +12,11 @@
     <input type="text" id="username" name="username" [(ngModel)]="username">
 
     <label for="password">Password:</label>
+    
     <input type="password" id="password" name="password" [(ngModel)]="password">
 
-    <button (click)="createTestUser()">Create An Account</button>
-    <button (click)="signInUser()">Sign In</button>
+    <button class="button" (click)="createTestUser()">Create An Account</button>
+    <a  href="/dashboard/" class="button">Sign In</a> 
   </div>
 </div>
 </body>

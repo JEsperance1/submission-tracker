@@ -12,40 +12,42 @@
 <div class ="card">
     <div class="card-header">
     <h3> All Submissions
-        <button>Add New Entry</button>
+        <button class="button" (click)="addNewEntry()">Add New Entry</button>
     </h3>
     
     </div>
 
+
+
+
+
+
 <div class="table-container">
 <table>
     <tr>
-    <th>Submission</th>
-    <th>Training Partner</th>
-    <th>Position</th>
-    <th>Result</th>
-    </tr>
-<tr><td>Armbar</td><td>Gary</td><td>Mount</td><td>Success</td></tr>
-<tr><td>RNC</td><td>Jeff</td><td>Back</td><td>Success</td></tr>
-<tr><td>Triangle</td><td>Joe</td><td>Guard</td><td>Failed</td></tr>
-<tr><td>Kimura</td><td>Alex</td><td>Side Control</td><td>Success</td></tr>
-<tr><td>Guillotine</td><td>Marcus</td><td>Standing</td><td>Failed</td></tr>
-<tr><td>Omoplata</td><td>Chris</td><td>Guard</td><td>Success</td></tr>
-<tr><td>Bow & Arrow</td><td>Daniel</td><td>Back</td><td>Success</td></tr>
-<tr><td>Ankle Lock</td><td>Ryan</td><td>50/50</td><td>Failed</td></tr>
-<tr><td>D'Arce</td><td>Mike</td><td>Top Half</td><td>Success</td></tr>
-<tr><td>Americana</td><td>Steve</td><td>Side Control</td><td>Success</td></tr>
-<tr><td>Ezekiel</td><td>Paul</td><td>Mount</td><td>Failed</td></tr>
-<tr><td>Heel Hook</td><td>Tyler</td><td>Inside Ashi</td><td>Success</td></tr>
-<tr><td>North-South Choke</td><td>Ben</td><td>North-South</td><td>Success</td></tr>
-<tr><td>Peruvian Necktie</td><td>Logan</td><td>Front Headlock</td><td>Failed</td></tr>
-<tr><td>Arm Triangle</td><td>Victor</td><td>Side Control</td><td>Success</td></tr>
-<tr><td>Kneebar</td><td>Owen</td><td>Top Half</td><td>Failed</td></tr>
-<tr><td>Calf Slicer</td><td>Brandon</td><td>Back</td><td>Success</td></tr>
-<tr><td>Paper Cutter</td><td>Isaac</td><td>Side Control</td><td>Success</td></tr>
-<tr><td>Loop Choke</td><td>Ethan</td><td>Guard</td><td>Failed</td></tr>
-<tr><td>Wrist Lock</td><td>Noah</td><td>Closed Guard</td><td>Success</td></tr>
-</table>
-</div>
+        <th>Submission</th>
+        <th>Training Partner</th>
+        <th>Position</th>
+        <th>Result</th>
+      </tr>
+
+      <!-- Top blank row for user entry -->
+<tr>
+  <td><input class="table-input" type="text" [(ngModel)]="newEntry.submission" placeholder="Enter submission"></td>
+  <td><input class="table-input" type="text" [(ngModel)]="newEntry.trainingPartner" placeholder="Enter partner"></td>
+  <td><input class="table-input" type="text" [(ngModel)]="newEntry.position" placeholder="Enter position"></td>
+  <td><input class="table-input" type="text" [(ngModel)]="newEntry.result" placeholder="Enter result"></td>
+</tr>
+
+
+<!-- Existing submissions -->
+      <tr *ngFor="let s of submissions">
+        <td>{{ s.submission }}</td>
+        <td>{{ s.trainingPartner }}</td>
+        <td>{{ s.position }}</td>
+        <td>{{ s.result }}</td>
+      </tr>
+    </table>
+  </div>
 </div>
 </body>

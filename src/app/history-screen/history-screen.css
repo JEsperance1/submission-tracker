@@ -133,6 +133,8 @@ th {
   letter-spacing: 0.03rem;
 }
 
+
+
 /* Table Cells */
 td {
   padding: 0.75rem 1rem;
@@ -145,6 +147,20 @@ tr:nth-child(even) {
   background: #f9f9f9;
 }
 
+.table-input {
+    width: 100%;
+    border: none;          /* remove default border */
+    background: transparent; /* match table background */
+    color: inherit;        /* inherit text color from td */
+    font-weight: inherit;  /* inherit font-weight */
+    font-family: inherit;  /* match table font */
+    padding: 0;            /* optional: match td padding */
+    outline: none;         /* remove focus outline */
+}
+
+.table-input::placeholder {
+    color: #aaa;           /* subtle placeholder like empty text */
+}
 /* Hover effect */
 tr:hover {
   background: rgba(106, 17, 203, 0.1);

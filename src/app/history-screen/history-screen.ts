@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { SupabaseService } from '../services/supabase';
 import { FormsModule } from '@angular/forms';
@@ -13,22 +14,60 @@ interface Submission {
 @Component({
   selector: 'app-history-screen',
   standalone: true,
-  imports: [FormsModule, RouterOutlet],  // <-- FormsModule required for ngModel
+  imports: [FormsModule, CommonModule],  // <-- FormsModule required for ngModel
   templateUrl: './history-screen.html',
   styleUrl: './history-screen.css'
 })
 export class HistoryScreen {
-  // Preexisting submissions
-  submissions: Submission[] = [
-    { submission: 'Armbar', trainingPartner: 'Gary', position: 'Mount', result: 'Success' },
-    { submission: 'RNC', trainingPartner: 'Jeff', position: 'Back', result: 'Success' },
-    { submission: 'Triangle', trainingPartner: 'Joe', position: 'Guard', result: 'Failed' },
-  ];
-
-  // The top blank row
-  newEntry: Submission = { submission: '', trainingPartner: '', position: '', result: '' };
+  submissions: Submission[] = [];
 
   constructor(private supabaseService: SupabaseService) {}
+  
+
+
+//i need to create a timer that goes off every second
+    //i need to check the database and update the submission entries every second
+
+
+
+
+
+
+
+
+
+
+ 
+async ngOnInit() {
+
+   const data = await this.supabaseService.getSubmissions();
+
+  this.submissions = data.map(row =>({
+    submission: row.submission,
+    trainingPartner: row.training_partner,
+    position: row.position,
+    result: row.result
+  }))
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  newEntry: Submission = { submission: '', trainingPartner: '', position: '', result: '' };
+
+
 
  async addNewEntry() {
   const supabase = this.supabaseService.getClient();
@@ -36,7 +75,7 @@ export class HistoryScreen {
   // Map camelCase fields to snake_case for Supabase
   const insertObject = {
     submission: this.newEntry.submission,
-    training_partner: this.newEntry.trainingPartner, // map here
+    training_partner: this.newEntry.trainingPartner,
     position: this.newEntry.position,
     result: this.newEntry.result
   };

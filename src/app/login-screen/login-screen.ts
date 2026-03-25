@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SupabaseService } from '../services/supabase';
-import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-screen',
   standalone: true,
-  imports: [RouterOutlet, FormsModule],
+  imports: [ FormsModule],
   templateUrl: './login-screen.html',
   styleUrls: ['./login-screen.css'],
 })
@@ -23,9 +22,12 @@ async signInUser() {
   const supabase = this.supabaseService.getClient();
 
   const { data, error } = await supabase.auth.signInWithPassword({
-    email: this.username + '@submtracker.local',
+    email: this.username,
     password: this.password
+
+    
   });
+  
 
   if (error) {
     console.error('Login error:', error.message);

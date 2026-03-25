@@ -98,6 +98,16 @@ body {
     transition: all 0.3s ease;
     background: #f9f9ff; /* light color for input */
 }
+.textFieldContainer input[type="password"] {
+    width: 90%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    background: #f9f9ff; /* light color for input */
+}
 
 .textFieldContainer input[type="text"]:focus {
     border-color: #6a11cb;
@@ -110,7 +120,7 @@ body {
 .button {
     display: inline-block;
     width: 100%;
-    padding: 12px 0;
+    padding: 12px ;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: white;
     text-align: center;

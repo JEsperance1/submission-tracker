@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { SupabaseService } from '../services/supabase';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 interface Submission {
   submission: string;
@@ -11,6 +11,7 @@ interface Submission {
   result: string;
 }
 
+
 @Component({
   selector: 'app-history-screen',
   standalone: true,
@@ -18,10 +19,14 @@ interface Submission {
   templateUrl: './history-screen.html',
   styleUrl: './history-screen.css'
 })
+
+
 export class HistoryScreen {
   submissions: Submission[] = [];
+    private router = inject(Router);
 
-  constructor(private supabaseService: SupabaseService) {}
+
+  constructor(private supabaseService: SupabaseService, private cdr: ChangeDetectorRef) {}
   
 
 
@@ -48,13 +53,20 @@ async ngOnInit() {
     position: row.position,
     result: row.result
   }))
+  this.cdr.detectChanges(); 
 
 }
 
 
 
 
+// 🔐 Sign-out method
+  logout = async () => {
+    const { error } = await this.supabaseService.signOut();
+    if (error) return console.error('Sign out error:', error.message);
 
+    this.router.navigate(['/login']);
+  };
 
 
 
@@ -95,5 +107,7 @@ async ngOnInit() {
 
   // Reset the top blank row
   this.newEntry = { submission: '', trainingPartner: '', position: '', result: '' };
+  this.cdr.detectChanges(); 
+
 }
 }

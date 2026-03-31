@@ -7,27 +7,35 @@ export class SupabaseService {
   private supabase: SupabaseClient;
 
   constructor() {
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseAnonKey);
+    this.supabase = createClient(
+      environment.supabaseUrl,
+      environment.supabaseAnonKey
+    );
   }
-//fetch submissions method
- async getSubmissions() {
-  const { data, error } = await this.supabase
-  .from('submissions')
-  .select('*');
 
-  //error response handling
-  if (error) {
-    console.error(error)
-    return [];
+  async getSession() {
+    return await this.supabase.auth.getSession();
   }
-  return data;
- }
 
+    async signOut() {
+  return await this.supabase.auth.signOut(); // now returns { error }
+}
+  async getSubmissions() {
+    const { data, error } = await this.supabase
+      .from('submissions')
+      .select('*');
 
+    if (error) {
+      console.error(error);
+      return [];
+    }
 
-
+    return data;
+  }
 
   getClient() {
     return this.supabase;
   }
+
+
 }

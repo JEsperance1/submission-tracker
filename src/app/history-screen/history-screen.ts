@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 
 interface Submission {
+  id: number | null;
   submission: string;
   trainingPartner: string;
   position: string;
@@ -48,6 +49,7 @@ async ngOnInit() {
    const data = await this.supabaseService.getSubmissions();
 
   this.submissions = data.map(row =>({
+    id: row.id,
     submission: row.submission,
     trainingPartner: row.training_partner,
     position: row.position,
@@ -58,9 +60,7 @@ async ngOnInit() {
 }
 
 
-
-
-// 🔐 Sign-out method
+//sign out
   logout = async () => {
     const { error } = await this.supabaseService.signOut();
     if (error) return console.error('Sign out error:', error.message);
@@ -70,21 +70,31 @@ async ngOnInit() {
 
 
 
+  async deleteEntry(id: number) {
+  try {
+    await this.supabaseService.deleteSubmission(id);
+    
+    this.submissions = this.submissions.filter(s => s.id !== id);
+    this.cdr.detectChanges();
+  } catch (err) {
+    console.error('Delete failed:', err);
+  }
+    this.cdr.detectChanges(); 
+}
+  
 
 
 
 
 
 
-
-  newEntry: Submission = { submission: '', trainingPartner: '', position: '', result: '' };
+  newEntry: Submission = { id: null, submission: '', trainingPartner: '', position: '', result: '' };
 
 
 
  async addNewEntry() {
   const supabase = this.supabaseService.getClient();
 
-  // Map camelCase fields to snake_case for Supabase
   const insertObject = {
     submission: this.newEntry.submission,
     training_partner: this.newEntry.trainingPartner,
@@ -92,22 +102,30 @@ async ngOnInit() {
     result: this.newEntry.result
   };
 
-  // Insert into Supabase
-  const { data, error } = await supabase.from('submissions').insert([insertObject]);
+  const { data, error } = await supabase
+    .from('submissions')
+    .insert([insertObject])
+    .select();
 
   if (error) {
     console.error('Error adding submission:', error.message);
     return;
   }
 
-  console.log('Submission added:', data);
+  if (data && data.length > 0) {
+    const row = data[0];
 
-  // Add it to the table locally
-  this.submissions.unshift({ ...this.newEntry });
+    this.submissions.unshift({
+      id: row.id,
+      submission: row.submission,
+      trainingPartner: row.training_partner,
+      position: row.position,
+      result: row.result
+    });
+  }
 
-  // Reset the top blank row
-  this.newEntry = { submission: '', trainingPartner: '', position: '', result: '' };
-  this.cdr.detectChanges(); 
+  this.newEntry = { id: null, submission: '', trainingPartner: '', position: '', result: '' };
+    this.cdr.detectChanges(); 
 
 }
 }

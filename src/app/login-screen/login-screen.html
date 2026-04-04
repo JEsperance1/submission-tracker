@@ -19,8 +19,13 @@
 
     <button class="button" (click)="signInUser()">Sign In</button> 
 
-
+@if (errorMessage) {
+  <div class="error">
+    {{ errorMessage }}
   </div>
+}
+</div>
+
 </div>
 </body>
 

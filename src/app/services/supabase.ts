@@ -32,6 +32,19 @@ export class SupabaseService {
 
     return data;
   }
+  async deleteSubmission(id: number) {
+  const { error } = await this.supabase
+    .from('submissions')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error('Delete error:', error.message);
+    throw new Error(error.message); 
+  }
+
+  return true;
+}
 
   getClient() {
     return this.supabase;

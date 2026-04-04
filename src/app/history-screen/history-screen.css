@@ -53,6 +53,7 @@ nav button {
     cursor: pointer;
     transition: transform 0.2s ease, background 0.3s ease;
 }
+ 
 
 nav a:hover, nav button:hover {
     background: rgba(255, 255, 255, 0.673);
@@ -84,6 +85,10 @@ nav a:hover, nav button:hover {
     cursor: pointer;
     transition: transform 0.2s ease, background 0.3s ease;
     }
+    .card button:hover {
+    background: #2575fc;   ;
+}
+    
     
 /* Nav inside card */
 .card nav {

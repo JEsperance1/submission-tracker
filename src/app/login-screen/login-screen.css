@@ -30,6 +30,10 @@ h1 {
     margin: 0;
 }
 
+.error {
+    color: red
+}
+
 /* General Page Styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

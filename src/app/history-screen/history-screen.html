@@ -12,7 +12,7 @@
 <div class ="card">
     <div class="card-header">
     <h3> All Submissions
-        <button class="button" (click)="addNewEntry()">Add New Entry</button>
+        
     </h3>
     
     </div>
@@ -29,6 +29,8 @@
         <th>Training Partner</th>
         <th>Position</th>
         <th>Result</th>
+        <th>Action<th>
+          
       </tr>
 
       <!-- Top blank row for user entry -->
@@ -37,6 +39,8 @@
   <td><input class="table-input" type="text" [(ngModel)]="newEntry.trainingPartner" placeholder="Enter partner"></td>
   <td><input class="table-input" type="text" [(ngModel)]="newEntry.position" placeholder="Enter position"></td>
   <td><input class="table-input" type="text" [(ngModel)]="newEntry.result" placeholder="Enter result"></td>
+  <td><button class="button" (click)="addNewEntry()">Add New Entry</button></td>
+  <td></td>
 </tr>
 
 
@@ -46,6 +50,8 @@
         <td>{{ s.trainingPartner }}</td>
         <td>{{ s.position }}</td>
         <td>{{ s.result }}</td>
+        <td><button class="button" (click)="deleteEntry(s.id!)">Delete</button></td>
+        <td></td>
       </tr>
     </table>
   </div>

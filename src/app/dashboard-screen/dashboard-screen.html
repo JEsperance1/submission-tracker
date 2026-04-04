@@ -30,12 +30,11 @@
         </a>
         <div class="submission-accuracy">
 <div class="stats-row">
-    <div class="pie-chart"></div>
+    <div class="pie-chart" [style.background]="getChartGradient()"></div>
 
     <div class="stats-list">
       <h3><span class="legend green"></span> Succeeded</h3> 
       <h3><span class="legend red"></span> Failed</h3>
-      <h3><span class="legend yellow"></span> Other</h3>
     </div>
   </div>
 </div>
@@ -43,7 +42,14 @@
     </h3>
     </div>
 <table>
-    <tr *ngFor="let s of submissions">
+  <tr>
+        <th>Submission</th>
+        <th>Training Partner</th>
+        <th>Position</th>
+        <th>Result</th>
+          
+      </tr>
+    <tr *ngFor="let s of displayedSubmissions">
         <td>{{ s.submission }}</td>
         <td>{{ s.trainingPartner }}</td>
         <td>{{ s.position }}</td>

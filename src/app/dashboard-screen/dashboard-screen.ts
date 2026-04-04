@@ -8,6 +8,7 @@ interface Submission {
   trainingPartner: string;
   position: string;
   result: string;
+  successPct?: number;
 }
 
 @Component({
@@ -19,7 +20,9 @@ interface Submission {
 export class DashboardScreen implements OnInit, OnDestroy {
 
   submissions: Submission[] = [];
+  displayedSubmissions: Submission[] = [];
   intervalId: any;
+  successPct = 0.0;
 
   private router = inject(Router);
 
@@ -39,13 +42,26 @@ export class DashboardScreen implements OnInit, OnDestroy {
     clearInterval(this.intervalId);
   }
 
-  async loadSubmissions() {
+  queryForSuccessPct() {
+    this.loadSubmissions();
+    const total = this.submissions.length;
+    const successes = this.submissions.filter(s => s.result.toLowerCase() === 'success').length;
+    this.successPct = successes / total * 100;
+  }
+
+  getChartGradient(): string {
+    this.queryForSuccessPct();
+  return `conic-gradient(
+    #4caf50 0% ${this.successPct}%,
+    #f44336 ${this.successPct}% 100%
+  )`;
+}
+async loadSubmissions() {
     const supabase = this.supabaseService.getClient();
     const { data, error } = await supabase
       .from('submissions')
       .select('*')
       .order('id', { ascending: false })
-      .limit(5);
 
     if (error) {
       console.error('Error fetching submissions:', error);
@@ -58,13 +74,12 @@ export class DashboardScreen implements OnInit, OnDestroy {
         submission: row.submission,
         trainingPartner: row.training_partner,
         position: row.position,
-        result: row.result
+        result: row.result,
       }))
+      this.displayedSubmissions = this.submissions.slice(0, 5);
   }
 
-  // 🔐 Sign-out method
   logout = async () => {
-    // ✅ Use service that returns result
     const res = await this.supabaseService.signOut();
     if (res?.error) return console.error('Sign out error:', res.error.message);
 

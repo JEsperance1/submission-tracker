@@ -106,7 +106,6 @@ nav a:hover, nav button:hover {
 }
 
 /* Colors */
-.yellow { background: #ff9800; }
 .green  { background: #4caf50; }
 .red    { background: #f44336; }
 
@@ -121,9 +120,8 @@ nav a:hover, nav button:hover {
 
   background:
     conic-gradient(
-      #4caf50 0% 45%,   /* Success */
-      #f44336 45% 70%,  /* Failed */
-      #ff9800 70% 100%  /* Other */
+      #4caf50 0% successPct,
+      #f44336 successPct 100%
     );
 }
 
@@ -154,13 +152,16 @@ nav a:hover, nav button:hover {
   width: 100%;
   overflow-x: auto;
   border-radius: 8px;
+  
 }
 
 /* Table */
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   min-width: 500px;
+  
 }
 
 /* Table Header */
@@ -174,11 +175,19 @@ th {
   letter-spacing: 0.03rem;
 }
 
+th:first-child {
+  border-top-left-radius: 10px;
+}
+
+th:last-child {
+  border-top-right-radius: 10px;
+}
 /* Table Cells */
 td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #e0e0e0;
   color: #333;
+  
 }
 
 /* Alternating rows */

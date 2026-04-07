@@ -44,18 +44,36 @@
 </tr>
 
 
-<!-- Existing submissions -->
-      <tr *ngFor="let s of submissions">
-        <td>{{ s.submission }}</td>
-        <td>{{ s.trainingPartner }}</td>
-        <td>{{ s.position }}</td>
-        <td>{{ s.result }}</td>
 
 
-        <!--pick up here when you get back-->
-        <td><button>✏️</button><button class="button" (click)="deleteEntry(s.id!)">Delete</button></td>
-        <td></td>
-      </tr>
+<tr *ngFor="let s of submissions">
+  <ng-container *ngIf="editingId === s.id; else viewMode">
+    
+    <!-- EDIT MODE -->
+    <td><input [(ngModel)]="s.submission"></td>
+    <td><input [(ngModel)]="s.trainingPartner"></td>
+    <td><input [(ngModel)]="s.position"></td>
+    <td><input [(ngModel)]="s.result"></td>
+    <td>
+      <button (click)="saveEntry(s)">Save</button>
+      <button (click)="cancelEdit(s)">Cancel</button>
+    </td>
+
+  </ng-container>
+
+  <ng-template #viewMode>
+    <!-- VIEW MODE -->
+    <td>{{ s.submission }}</td>
+    <td>{{ s.trainingPartner }}</td>
+    <td>{{ s.position }}</td>
+    <td>{{ s.result }}</td>
+    <td>
+      <button (click)="editRow(s)">Edit</button>
+      <button (click)="deleteEntry(s.id!)">Delete</button>
+    </td>
+    <td></td>
+  </ng-template>
+</tr>
     </table>
   </div>
 </div>

@@ -4,12 +4,14 @@ import { SupabaseService } from '../services/supabase';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 
+
 interface Submission {
   id: number | null;
   submission: string;
   trainingPartner: string;
   position: string;
   result: string;
+  
 }
 
 
@@ -25,6 +27,10 @@ interface Submission {
 export class HistoryScreen {
   submissions: Submission[] = [];
     private router = inject(Router);
+    editingId: number | null = null;
+originalEntry: Submission | null = null;
+    
+    
 
 
   constructor(private supabaseService: SupabaseService, private cdr: ChangeDetectorRef) {}
@@ -37,7 +43,7 @@ export class HistoryScreen {
 
 
 
-
+newEntry: Submission = { id: null, submission: '', trainingPartner: '', position: '', result: '' };
 
 
 
@@ -83,12 +89,52 @@ async ngOnInit() {
 }
   
 
+editRow(submission: Submission) {
+  this.editingId = submission.id;
+
+  // Deep copy so cancel can restore
+  this.originalEntry = { ...submission };
+}
+
+async saveEntry(submission: Submission) {
+  const supabase = this.supabaseService.getClient();
+
+  const { error } = await supabase
+    .from('submissions')
+    .update({
+      submission: submission.submission,
+      training_partner: submission.trainingPartner,
+      position: submission.position,
+      result: submission.result
+    })
+    .eq('id', submission.id);
+
+  if (error) {
+    console.error('Update failed:', error.message);
+    return;
+  }
+
+  this.editingId = null;
+  this.originalEntry = null;
+    this.cdr.detectChanges(); 
+
+}
+
+cancelEdit(submission: Submission) {
+  if (this.originalEntry) {
+    submission.submission = this.originalEntry.submission;
+    submission.trainingPartner = this.originalEntry.trainingPartner;
+    submission.position = this.originalEntry.position;
+    submission.result = this.originalEntry.result;
+  }
+
+  this.editingId = null;
+  this.originalEntry = null;
+}
 
 
 
-
-
-  newEntry: Submission = { id: null, submission: '', trainingPartner: '', position: '', result: '' };
+  
 
 
 

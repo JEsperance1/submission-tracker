@@ -15,7 +15,7 @@
 <a href="/dashboard/">Dashboard</a> 
 <a href="/history/">History</a>
 <a href="/stats/">Stats</a>
-<!--<a href="/profile/">Profile</a>-->
+<a href="/profile/">About</a>
 <button (click)="logout()">Log Out</button>
 
 
@@ -24,32 +24,40 @@
 <div class="profile-card">
 
   <div class="profile-header">
-    <div class="avatar">JE</div>
+    <div class="avatar">SM</div>
     <div class="profile-info">
-      <h2>Jordan Elijah</h2>
-      <p>Purple Belt • 185 lbs • Hybrid Athlete</p>
-      <p>Training Since: 2020</p>
+      <h2>SubMISSION</h2>
+      <p>Jiu-Jitsu Submission Tracking App</p>
+      <p>Built for Performance Analysis & Habit Tracking</p>
     </div>
   </div>
 
-
   <div class="profile-section">
-    <h3>Recent Training Notes<button>Add New Note</button></h3>
+    <h3>About the Project</h3>
     <ul>
-      <li>Improved transition from half guard to back take.</li>
-      <li>Need to tighten finishing mechanics on triangle.</li>
-      <li>Leg lock entries feeling smoother from 50/50.</li>
+      <li>Tracks jiu-jitsu submissions and training data over time.</li>
+      <li>Provides visual analytics to identify habits and trends.</li>
+      <li>Designed for ease of use with in-line editing and fast data entry.</li>
     </ul>
   </div>
 
   <div class="profile-section">
-    <h3>Goals
-        <button>Edit Goals</button>
-    </h3>
+    <h3>Core Features</h3>
     <ul>
-      <li>Increase submission rate to 85%</li>
-      <li>Develop stronger closed guard offense</li>
-      <li>Compete in next regional tournament</li>
+      <li>User authentication with per-user data isolation.</li>
+      <li>Full CRUD operations on submission history.</li>
+      <li>Real-time data visualization through dynamic pie charts.</li>
+      <li>Dashboard displaying most recent submissions.</li>
+    </ul>
+  </div>
+
+  <div class="profile-section">
+    <h3>Tech Stack</h3>
+    <ul>
+      <li>Frontend: Angular</li>
+      <li>Backend: Supabase</li>
+      <li>Database: PostgreSQL</li>
+      <li>Authentication: Supabase Auth</li>
     </ul>
   </div>
 

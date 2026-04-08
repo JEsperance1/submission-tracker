@@ -55,8 +55,8 @@ async signInUser() {
   } else {
     console.log('User signed up:', data.user);
 
-    // Optional: auto login after signup
-    this.signInUser();
+    
   }
+  this.signInUser();
 }
 }

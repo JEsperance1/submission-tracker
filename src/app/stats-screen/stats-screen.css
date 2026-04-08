@@ -2,7 +2,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     min-height: 100vh;  
-    min-width: 100vh;
+    min-width: 100vw; /* ✅ FIXED (was vh) */
     margin: 0;
     padding: 0;
     color: #333;
@@ -27,10 +27,9 @@ nav {
     gap: 15px;
     background: #2575fc;
     padding: 0.75rem 1rem;
-    justify-content: left;
+    justify-content: flex-start; /* ✅ better than "left" */
     align-items: center;
     flex-wrap: wrap;
-    
 }
 
 nav a, nav button {
@@ -43,14 +42,11 @@ nav a, nav button {
     border: none;
     cursor: pointer;
 }
+
 nav button {
     padding: 6px 12px;
-    border: none;
     background: #6a11cb;
-    color: white;
-    font-weight: 600;
     border-radius: 8px;
-    cursor: pointer;
     transition: transform 0.2s ease, background 0.3s ease;
 }
 
@@ -65,7 +61,7 @@ nav a:hover, nav button:hover {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    max-width: 400px;
+    max-width: 500px; /* ✅ slightly wider for stats */
 }
 
 /* Card header */
@@ -76,7 +72,7 @@ nav a:hover, nav button:hover {
     margin-bottom: 15px;
 }
 
-.card-header h3 {
+.card h2 {
     margin: 0;
     font-size: 1.5em;
     color: #2575fc;
@@ -84,10 +80,8 @@ nav a:hover, nav button:hover {
 
 .card-header button {
     padding: 6px 12px;
-    border: none;
     background: #6a11cb;
     color: white;
-    font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.2s ease, background 0.3s ease;
@@ -97,57 +91,53 @@ nav a:hover, nav button:hover {
     background: #2575fc;
     transform: translateY(-2px);
 }
+
 .subs {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
+
 .stats-row {
   display: flex;
-  align-items: center;     /* vertically center legend with pie */
-  justify-content: center; /* center whole block in card */
+  align-items: center;
+  justify-content: center;
   gap: 40px;
 }
 
-/* This prevents weird stretching */
 .stats-list {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertically center items */
+  justify-content: center;
   gap: 15px;
 }
 
-/* Small square */
+/* Legend square */
 .legend {
   width: 14px;
   height: 14px;
   border-radius: 3px;
   display: inline-block;
+  margin-right: 8px; /* ✅ spacing fix */
 }
 
-/* Colors */
-.yellow { background: #ff9800; }
-.green  { background: #4caf50; }
-.red    { background: #f44336; }
 
-/* Pie chart container card */
 .pie-chart {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
-  margin: 40px auto;
+  margin: 20px auto;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  align-self: left;
 
-  background:
-    conic-gradient(
-      #4caf50 0% 45%,   /* Success */
-      #f44336 45% 70%,  /* Failed */
-      #ff9800 70% 100%  /* Other */
-    );
+  display: flex; /* optional center alignment */
+  align-items: center;
+  justify-content: center;
+
+  /* ❌ REMOVE STATIC GRADIENT — Angular will inject it */
+  /* background: conic-gradient(...) */
 }
 
-/* Optional: center everything nicely */
+/* Optional */
 .stats-container {
   text-align: center;
 }

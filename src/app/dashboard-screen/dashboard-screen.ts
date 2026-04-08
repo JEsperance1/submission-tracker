@@ -57,27 +57,42 @@ export class DashboardScreen implements OnInit, OnDestroy {
   )`;
 }
 async loadSubmissions() {
-    const supabase = this.supabaseService.getClient();
-    const { data, error } = await supabase
-      .from('submissions')
-      .select('*')
-      .order('id', { ascending: false })
+  const supabase = this.supabaseService.getClient();
 
-    if (error) {
-      console.error('Error fetching submissions:', error);
-      this.submissions = [];
-      return;
-    }
-
-    this.submissions = data
-      .map((row: any) => ({
-        submission: row.submission,
-        trainingPartner: row.training_partner,
-        position: row.position,
-        result: row.result,
-      }))
-      this.displayedSubmissions = this.submissions.slice(0, 5);
+  // Get current user
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError || !user) {
+    console.error('Error getting current user:', userError);
+    this.submissions = [];
+    this.displayedSubmissions = [];
+    return;
   }
+
+  // Fetch submissions for the current user
+  const { data, error } = await supabase
+    .from('submissions')
+    .select('*')
+    .eq('user_id', user.id) 
+    .order('id', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching submissions:', error);
+    this.submissions = [];
+    this.displayedSubmissions = [];
+    return;
+  }
+
+  // Map the results to the Submission interface
+  this.submissions = data.map((row: any) => ({
+    submission: row.submission,
+    trainingPartner: row.training_partner,
+    position: row.position,
+    result: row.result,
+  }));
+
+  // Keep only the first 5 submissions for display
+  this.displayedSubmissions = this.submissions.slice(0, 5);
+}
 
   logout = async () => {
     const res = await this.supabaseService.signOut();

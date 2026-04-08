@@ -16,19 +16,24 @@
 <a href="/dashboard/">Dashboard</a> 
 <a href="/history/">History</a>
 <a href="/stats/">Stats</a>
-<a href="/profile/">Profile</a>
+<!--<a href="/profile/">Profile</a>-->
 <button (click)="logout()">Log Out</button>
 </nav>
 
 <div class="card">
+  <h2>Submission Breakdown</h2>
   <div class="stats-row">
-    <div class="pie-chart"></div>
+    
+    <!-- Dynamic pie chart -->
+    <div class="pie-chart" [style.background]="pieChartStyle"></div>
 
     <div class="stats-list">
-      <h3><span class="legend yellow"></span> RNC</h3>
-      <h3><span class="legend green"></span> Armbar</h3>
-      <h3><span class="legend red"></span> Heel Hook</h3>
+      <h3 *ngFor="let item of submissionStats; let i = index">
+        <span class="legend" [style.background]="colors[i]"></span>
+        {{ item.submission }} ({{ item.count }})
+      </h3>
     </div>
+
   </div>
 </div>
 

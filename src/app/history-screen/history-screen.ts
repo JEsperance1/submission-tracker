@@ -51,19 +51,58 @@ newEntry: Submission = { id: null, submission: '', trainingPartner: '', position
 
  
 async ngOnInit() {
+await this.loadSubmissions();
+  this.cdr.detectChanges(); 
 
-   const data = await this.supabaseService.getSubmissions();
+}
 
-  this.submissions = data.map(row =>({
+async loadSubmissions() {
+  const supabase = this.supabaseService.getClient();
+
+  // get current user
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError || !user) {
+    console.error('Error getting current user:', userError);
+    this.submissions = [];
+    return;
+  }
+
+  // fetch only submissions for this user
+  const { data, error } = await supabase
+    .from('submissions')
+    .select('*')
+    .eq('user_id', user.id)   // filter by current user
+    .order('id', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching submissions:', error.message);
+    this.submissions = [];
+    return;
+  }
+
+  this.submissions = data.map((row: any) => ({
     id: row.id,
     submission: row.submission,
     trainingPartner: row.training_partner,
     position: row.position,
     result: row.result
-  }))
-  this.cdr.detectChanges(); 
+  }));
 
+  this.cdr.detectChanges();
 }
+
+  
+
+
+
+
+
+
+
+
+
+
+
 
 
 //sign out
@@ -132,26 +171,27 @@ cancelEdit(submission: Submission) {
   this.originalEntry = null;
 }
 
-
-
-  
-
-
-
  async addNewEntry() {
   const supabase = this.supabaseService.getClient();
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError || !user) {
+    console.error('Error getting current user:', userError);
+    return;
+  }
 
   const insertObject = {
     submission: this.newEntry.submission,
     training_partner: this.newEntry.trainingPartner,
     position: this.newEntry.position,
-    result: this.newEntry.result
+    result: this.newEntry.result,
+    user_id: user.id
   };
 
   const { data, error } = await supabase
     .from('submissions')
     .insert([insertObject])
     .select();
+    
 
   if (error) {
     console.error('Error adding submission:', error.message);

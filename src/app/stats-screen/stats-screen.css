@@ -1,33 +1,32 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
-    min-height: 100vh;  
-    min-width: 100vw; /* ✅ FIXED (was vh) */
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     color: #333;
 }
 
-/* SubMISSION Header */
+/* Header */
 h1 {
     text-align: center;
     background: rgba(0, 0, 0, 0.4);
     color: white;
-    padding: 30px 0;
+    padding: 20px 10px;
     margin: 0;
-    font-size: 3em;
-    letter-spacing: 3px;
+    font-size: clamp(1.8rem, 5vw, 3rem); /* 🔥 responsive text */
+    letter-spacing: 2px;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     border-bottom: 3px solid rgba(255,255,255,0.3);
 }
 
-/* Navigation Bar */
+/* Nav */
 nav {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     background: #2575fc;
-    padding: 0.75rem 1rem;
-    justify-content: flex-start; /* ✅ better than "left" */
+    padding: 10px;
+    justify-content: center; /* better for mobile */
     align-items: center;
     flex-wrap: wrap;
 }
@@ -36,108 +35,88 @@ nav a, nav button {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    padding: 0.5rem 1rem;
+    padding: 8px 14px;
     border-radius: 6px;
     transition: background 0.3s ease;
     border: none;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 
 nav button {
-    padding: 6px 12px;
     background: #6a11cb;
-    border-radius: 8px;
-    transition: transform 0.2s ease, background 0.3s ease;
 }
 
 nav a:hover, nav button:hover {
-    background: rgba(255, 255, 255, 0.673);
+    background: rgba(255, 255, 255, 0.6);
 }
 
-/* Card Styling */
+
+
+
+
+
+
+
+/* Card */
 .card {
     background: rgba(255,255,255,0.95);
     margin: 20px auto;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    max-width: 500px; /* ✅ slightly wider for stats */
+    width: 80%;
+    max-width: 600px;
+    
 }
 
-/* Card header */
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.card h2 {
-    margin: 0;
-    font-size: 1.5em;
-    color: #2575fc;
-}
-
-.card-header button {
-    padding: 6px 12px;
-    background: #6a11cb;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
-}
-
-.card-header button:hover {
-    background: #2575fc;
-    transform: translateY(-2px);
-}
-
-.subs {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
+/* Stats layout */
 .stats-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
 }
 
-.stats-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 15px;
+/* Stack on mobile */
+@media (max-width: 768px) {
+    .stats-row {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
 
-/* Legend square */
-.legend {
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  display: inline-block;
-  margin-right: 8px; /* ✅ spacing fix */
-}
-
-
+/* Pie chart */
 .pie-chart {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  margin: 20px auto;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-
-  display: flex; /* optional center alignment */
-  align-items: center;
-  justify-content: center;
-
-  /* ❌ REMOVE STATIC GRADIENT — Angular will inject it */
-  /* background: conic-gradient(...) */
+    width: clamp(180px, 50vw, 300px); /* 🔥 responsive */
+    height: clamp(180px, 50vw, 300px);
+    border-radius: 0%;
+    border: 3px solid black; /* ✅ added */
+    margin: 10px auto;
 }
 
-/* Optional */
-.stats-container {
-  text-align: center;
+
+
+/* Stats list */
+.stats-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+.stats-list h3 {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    margin: 0;
+}
+
+/* Legend */
+.legend {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 8px;
+      border: 2px solid black; 
+
 }

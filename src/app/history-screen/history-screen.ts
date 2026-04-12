@@ -28,22 +28,15 @@ export class HistoryScreen {
   submissions: Submission[] = [];
     private router = inject(Router);
     editingId: number | null = null;
-originalEntry: Submission | null = null;
+    originalEntry: Submission | null = null;
+    searchTerm = '';
     
     
 
 
-  constructor(private supabaseService: SupabaseService, private cdr: ChangeDetectorRef) {}
-  
-
-
-//i need to create a timer that goes off every second
-    //i need to check the database and update the submission entries every second
-
-
-
-
-newEntry: Submission = { id: null, submission: '', trainingPartner: '', position: '', result: '' };
+constructor(private supabaseService: SupabaseService, private cdr: ChangeDetectorRef) {}
+newEntry: Submission = { id: null, submission: '', trainingPartner: '', position: '', result: '' }
+newSearchTerm: string = this.searchTerm;
 
 
 
@@ -52,11 +45,14 @@ newEntry: Submission = { id: null, submission: '', trainingPartner: '', position
  
 async ngOnInit() {
 await this.loadSubmissions();
+this.printSearchTerm();
+
   this.cdr.detectChanges(); 
 
 }
 
 async loadSubmissions() {
+  this.printSearchTerm()
   const supabase = this.supabaseService.getClient();
 
   // get current user
@@ -67,6 +63,8 @@ async loadSubmissions() {
     return;
   }
 
+
+if (this.searchTerm == "") {
   // fetch only submissions for this user
   const { data, error } = await supabase
     .from('submissions')
@@ -91,19 +89,39 @@ async loadSubmissions() {
   this.cdr.detectChanges();
 }
 
+else {
+
+// fetch only submissions for this user
+  const { data, error } = await supabase
+    .from('submissions')
+    .select('*')
+    .or(`submission.ilike.%${this.searchTerm}%`)
+    .eq('user_id', user.id)   // filter by current user
+    .order('id', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching submissions:', error.message);
+    this.submissions = [];
+    return;
+  }
+
+  this.submissions = data.map((row: any) => ({
+    id: row.id,
+    submission: row.submission,
+    trainingPartner: row.training_partner,
+    position: row.position,
+    result: row.result
+  }));
+
+  this.cdr.detectChanges();
+}
+}
+
   
 
-
-
-
-
-
-
-
-
-
-
-
+printSearchTerm() {
+  console.log(this.searchTerm);
+}
 
 //sign out
   logout = async () => {

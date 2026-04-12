@@ -1,80 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jiu Jitsu Submission Tracker</title>
+</head>
 <body>
-<h1>SubMISSION</h1>
+<h1>History</h1>
 
 <nav>
-<a href="/dashboard/">Dashboard</a> 
-<a href="/history/">History</a>
-<a href="/stats/">Stats</a>
-<a href="/profile/">About</a>
-<button (click)="logout()">Log Out</button>
+  <a href="/dashboard/">Dashboard</a> 
+  <a href="/history/">History</a>
+  <a href="/stats/">Stats</a>
+  <a href="/profile/">About</a>
+  <button (click)="logout()">Log Out</button>
 </nav>
 
-<div class ="card">
-    <div class="card-header">
-    <h3> All Submissions
-        
-    </h3>
-    
+<div class="card">
+  <div class="card-header">
+    <h3>All Submissions</h3>
+    <div class="search-container">
+    <input class="search-bar"  placeholder="Search..."[(ngModel)] = "searchTerm" (input)="loadSubmissions()">
     </div>
+  </div>
 
 
 
+  
 
-
-
-<div class="table-container">
-<table>
-    <tr>
+  <div class="table-container">
+    <table>
+      <tr>
         <th>Submission</th>
         <th>Training Partner</th>
         <th>Position</th>
         <th>Result</th>
-        <th>Action<th>
-          
+        <th>Action</th>
       </tr>
 
-      <!-- Top blank row for user entry -->
-<tr>
-  <td><input class="table-input" type="text" [(ngModel)]="newEntry.submission" placeholder="Enter submission"></td>
-  <td><input class="table-input" type="text" [(ngModel)]="newEntry.trainingPartner" placeholder="Enter partner"></td>
-  <td><input class="table-input" type="text" [(ngModel)]="newEntry.position" placeholder="Enter position"></td>
-  <td><input class="table-input" type="text" [(ngModel)]="newEntry.result" placeholder="Enter result"></td>
-  <td><button class="button" (click)="addNewEntry()">Add New Entry</button></td>
-  <td></td>
-</tr>
+      <!-- Input row -->
+      <tr>
+        <td><input class="table-input" [(ngModel)]="newEntry.submission" placeholder="Submission"></td>
+        <td><input class="table-input" [(ngModel)]="newEntry.trainingPartner" placeholder="Partner"></td>
+        <td><input class="table-input" [(ngModel)]="newEntry.position" placeholder="Position"></td>
+        <td><input class="table-input" [(ngModel)]="newEntry.result" placeholder="Result"></td>
+        <td><button (click)="addNewEntry()">Add</button></td>
+      </tr>
 
+      <!-- Data rows -->
+      <tr *ngFor="let s of submissions">
+        <ng-container *ngIf="editingId === s.id; else viewMode">
+          <td><input [(ngModel)]="s.submission"></td>
+          <td><input [(ngModel)]="s.trainingPartner"></td>
+          <td><input [(ngModel)]="s.position"></td>
+          <td><input [(ngModel)]="s.result"></td>
+          <td>
+            <button (click)="saveEntry(s)">Save</button>
+            <button (click)="cancelEdit(s)">Cancel</button>
+          </td>
+        </ng-container>
 
-
-
-<tr *ngFor="let s of submissions">
-  <ng-container *ngIf="editingId === s.id; else viewMode">
-    
-    <!-- EDIT MODE -->
-    <td><input [(ngModel)]="s.submission"></td>
-    <td><input [(ngModel)]="s.trainingPartner"></td>
-    <td><input [(ngModel)]="s.position"></td>
-    <td><input [(ngModel)]="s.result"></td>
-    <td>
-      <button (click)="saveEntry(s)">Save</button>
-      <button (click)="cancelEdit(s)">Cancel</button>
-    </td>
-
-  </ng-container>
-
-  <ng-template #viewMode>
-    <!-- VIEW MODE -->
-    <td>{{ s.submission }}</td>
-    <td>{{ s.trainingPartner }}</td>
-    <td>{{ s.position }}</td>
-    <td>{{ s.result }}</td>
-    <td>
-      <button (click)="editRow(s)">Edit</button>
-      <button (click)="deleteEntry(s.id!)">Delete</button>
-    </td>
-    <td></td>
-  </ng-template>
-</tr>
+        <ng-template #viewMode>
+          <td>{{ s.submission }}</td>
+          <td>{{ s.trainingPartner }}</td>
+          <td>{{ s.position }}</td>
+          <td>{{ s.result }}</td>
+          <td>
+            <button (click)="editRow(s)">Edit</button>
+            <button (click)="deleteEntry(s.id!)">Delete</button>
+          </td>
+        </ng-template>
+      </tr>
     </table>
   </div>
+
 </div>
 </body>

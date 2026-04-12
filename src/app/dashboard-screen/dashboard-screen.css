@@ -1,66 +1,59 @@
-/* General page settings */
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
-    min-height: 100vh;  
-    min-width: 100vh;
+    min-height: 100vh;
+    width: 100%;              /* ✅ FIX */
     margin: 0;
     padding: 0;
+    overflow-x: hidden;       /* ✅ KILLS RIGHT WHITESPACE */
     color: #333;
 }
 
-/* SubMISSION Header */
+/* Header */
 h1 {
     text-align: center;
     background: rgba(0, 0, 0, 0.4);
     color: white;
-    padding: 30px 0;
+    padding: 20px 10px;
     margin: 0;
-    font-size: 3em;
-    letter-spacing: 3px;
+    font-size: clamp(1.8rem, 5vw, 3rem); /* 🔥 responsive text */
+    letter-spacing: 2px;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     border-bottom: 3px solid rgba(255,255,255,0.3);
 }
 
-/* Navigation Bar */
+/* Nav */
 nav {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     background: #2575fc;
-    padding: 0.75rem 1rem;
-    justify-content: left;
+    padding: 10px;
+    justify-content: center; /* better for mobile */
     align-items: center;
     flex-wrap: wrap;
-    
 }
 
 nav a, nav button {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    padding: 0.5rem 1rem;
+    padding: 8px 14px;
     border-radius: 6px;
     transition: background 0.3s ease;
     border: none;
     cursor: pointer;
+    font-size: 0.9rem;
 }
+
 nav button {
-    padding: 6px 12px;
-    border: none;
     background: #6a11cb;
-    color: white;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
 }
 
 nav a:hover, nav button:hover {
-    background: rgba(255, 255, 255, 0.673);
+    background: rgba(255, 255, 255, 0.6);
 }
 
-/* Card Styling */
+/* Card */
 .card {
     background: rgba(255,255,255,0.95);
     margin: 20px auto;
@@ -70,157 +63,148 @@ nav a:hover, nav button:hover {
     max-width: 900px;
 }
 
-/* Card header */
+/* Header */
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
-}
-.subs {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.stats-row {
-  display: flex;
-  align-items: center;     /* vertically center legend with pie */
-  justify-content: center; /* center whole block in card */
-  gap: 40px;
+    flex-wrap: wrap;
 }
 
-/* This prevents weird stretching */
-.stats-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* vertically center items */
-  gap: 15px;
-}
-
-/* Small square */
-.legend {
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  display: inline-block;
-}
-
-/* Colors */
-.green  { background: #4caf50; }
-.red    { background: #f44336; }
-
-/* Pie chart container card */
-.pie-chart {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin: 40px auto;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  align-self: left;
-
-  background:
-    conic-gradient(
-      #4caf50 0% successPct,
-      #f44336 successPct 100%
-    );
-}
-
-.card-header h3 {
-    margin: 0;
-    font-size: 1.5em;
-    color: #2575fc;
-}
-
-.card-header button {
-    padding: 6px 12px;
-    border: none;
+button {
+    padding: 6px 10px;
     background: #6a11cb;
     color: white;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
+    border: none;
+    border-radius: 6px;
 }
 
-.card-header button:hover {
-    background: #2575fc;
-    transform: translateY(-2px);
+/* Stats */
+.stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
-/* Table container */
+.stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.legend {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+}
+
+.green { background: #4caf50;    
+    border: 2px solid black; 
+
+}
+.red { background: #f44336;     
+  border: 2px solid black; 
+}
+
+.pie-chart {
+    width: 180px;
+    height: 180px;
+    border-radius: 0%;
+    border: 3px solid black; /* ✅ added */
+    float: left;
+}
+
+/* TABLE WRAPPER */
 .table-container {
-  width: 100%;
-  overflow-x: auto;
-  border-radius: 8px;
-  
+    width: 100%;
 }
 
-/* Table */
+/* TABLE */
 table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  min-width: 500px;
-  
+    width: 100%;
+    border-collapse: collapse;
 }
 
-/* Table Header */
+/* Header */
 th {
-  background: #2575fc;
-  color: white;
-  text-align: left;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03rem;
+    background: #2575fc;
+    color: white;
+    text-align: left;
+    padding: 12px;
+    text-transform: uppercase;
 }
 
-th:first-child {
-  border-top-left-radius: 10px;
-}
-
-th:last-child {
-  border-top-right-radius: 10px;
-}
-/* Table Cells */
+/* Cells */
 td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #e0e0e0;
-  color: #333;
-  
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-/* Alternating rows */
+/* Zebra rows */
 tr:nth-child(even) {
-  background: #f9f9f9;
+    background: #f9f9f9;
 }
 
-/* Hover effect */
+/* Hover */
 tr:hover {
-  background: rgba(106, 17, 203, 0.1);
-  cursor: pointer;
+    background: rgba(106, 17, 203, 0.1);
 }
 
-/* First column highlight */
+/* Highlight first column */
 td:first-child {
-  font-weight: 600;
-  color: #6a11cb;
+    font-weight: 600;
+    color: #6a11cb;
 }
 
-/* Responsive adjustments */
+/* ========================= */
+/* MOBILE: NO SCROLL TABLE   */
+/* ========================= */
 @media (max-width: 600px) {
-    .card {
-        margin: 15px;
-        padding: 15px;
-    }
-
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
 
     h1 {
         font-size: 2em;
-        padding: 20px 0;
+    }
+
+    .card {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    /* Hide table header */
+    thead {
+        display: none;
+    }
+
+    table, tbody, tr, td {
+        display: block;
+        width: 100%;
+    }
+
+    tr {
+        background: white;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        padding: 10px;
+        width: 95%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    td {
+        position: relative;
+        padding-left: 50%;
+        border: none;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        font-weight: bold;
+        color: #2575fc;
     }
 }

@@ -22,13 +22,15 @@
 </nav>
 
 <div class="card">
-  <h2>Submission Breakdown</h2>
+  <h2>Submissions Visualized</h2>
+
   <div class="stats-row">
     
     <!-- Dynamic pie chart -->
     <div class="pie-chart" [style.background]="pieChartStyle"></div>
 
     <div class="stats-list">
+      <h2>Number of Submision Attempts</h2>
       <h3 *ngFor="let item of submissionStats; let i = index">
         <span class="legend" [style.background]="colors[i]"></span>
         {{ item.submission }} ({{ item.count }})

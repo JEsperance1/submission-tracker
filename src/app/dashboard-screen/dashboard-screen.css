@@ -79,6 +79,10 @@ button {
     border-radius: 6px;
 }
 
+button:hover {
+    background: #a869eb;
+}
+
 /* Stats */
 .stats-row {
     display: flex;

@@ -96,6 +96,9 @@ nav a:hover, nav button:hover {
 }
 
 
+.stats-list h2 {
+    margin: 0px;
+}
 
 /* Stats list */
 .stats-list {

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginScreenComponent } from './login-screen/login-screen.component';
-import { ProfileScreenComponent } from './profile-screen/profile-screen.component';
-import { DashboardScreenComponent } from './dashboard-screen/dashboard-screen.component';
-import { HistoryScreenComponent } from './history-screen/history-screen.component';
-import { StatsScreenComponent } from './stats-screen/stats-screen.component';
+import { LoginScreen } from './login-screen/login-screen';
+import { ProfileScreen } from './profile-screen/profile-screen';
+import { DashboardScreen } from './dashboard-screen/dashboard-screen';
+import { HistoryScreen } from './history-screen/history-screen';
+import { StatsScreen } from './stats-screen/stats-screen';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ProfileScreenComponent],
+  imports: [LoginScreen],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

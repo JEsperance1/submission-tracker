@@ -119,6 +119,10 @@ button {
     border-radius: 6px;
     margin-top: 1px
 }
+
+button:hover {
+    background: #a869eb;
+}
 @media (max-width: 600px) {
 
   h1 {

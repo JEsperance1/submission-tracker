@@ -69,9 +69,7 @@ nav a:hover, nav button:hover {
     width: 300px;
     height: 20px;
     overflow: hidden;
-    margin-bottom: 10px;
-    
-    
+    margin-bottom: 10px; 
 }
 
 /* Table wrapper */
@@ -102,7 +100,6 @@ tr:nth-child(even) {
   background: #f9f9f9;
 }
 
-/* Inputs */
 .table-input {
     width: 100%;
     border: none;
@@ -110,9 +107,16 @@ tr:nth-child(even) {
     outline: none;
 }
 
+select {
+    width: 100%;
+    background: transparent;
+    outline: none;
+}
+
 /* Buttons */
 button {
-    padding: 6px 10px;
+  margin-left: 1px;  
+  padding: 6px 10px;
     background: #6a11cb;
     color: white;
     border: none;
@@ -141,6 +145,10 @@ button:hover {
     padding: 0.5rem;
     font-size: 0.8rem;
   }
+
+  select {
+    max-width: 40px;
+}
 
   button {
     padding: 5px 8px;

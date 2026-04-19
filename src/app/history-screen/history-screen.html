@@ -42,7 +42,11 @@
         <td><input class="table-input" [(ngModel)]="newEntry.submission" placeholder="Submission"></td>
         <td><input class="table-input" [(ngModel)]="newEntry.trainingPartner" placeholder="Partner"></td>
         <td><input class="table-input" [(ngModel)]="newEntry.position" placeholder="Position"></td>
-        <td><input class="table-input" [(ngModel)]="newEntry.result" placeholder="Result"></td>
+
+        <td><select [(ngModel)]="newEntry.result" placeholder="Result">
+            <option>Success</option>
+            <option>Failed</option>
+          </select></td> 
         <td><button (click)="addNewEntry()">Add</button></td>
       </tr>
 
@@ -52,7 +56,10 @@
           <td><input [(ngModel)]="s.submission"></td>
           <td><input [(ngModel)]="s.trainingPartner"></td>
           <td><input [(ngModel)]="s.position"></td>
-          <td><input [(ngModel)]="s.result"></td>
+          <td><select [(ngModel)]="s.result">
+            <option>Success</option>
+            <option>Failed</option>
+          </select></td>
           <td>
             <button (click)="saveEntry(s)">Save</button>
             <button (click)="cancelEdit(s)">Cancel</button>

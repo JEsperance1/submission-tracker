@@ -204,6 +204,14 @@ cancelEdit(submission: Submission) {
     result: this.newEntry.result,
     user_id: user.id
   };
+  
+
+
+if (this.newEntry.submission == '' || this.newEntry.trainingPartner == '' || this.newEntry.position == '' || this.newEntry.result == '') {
+ console.error('Error adding submission:', 'Cannot have blank entries');
+}
+
+else {
 
   const { data, error } = await supabase
     .from('submissions')
@@ -231,5 +239,6 @@ cancelEdit(submission: Submission) {
   this.newEntry = { id: null, submission: '', trainingPartner: '', position: '', result: '' };
     this.cdr.detectChanges(); 
 
+}
 }
 }

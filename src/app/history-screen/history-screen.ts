@@ -226,6 +226,7 @@ submission.result.toLowerCase() === this.newEntry.result.toLowerCase()) {
 }
 });
 
+
 if (hasDuplicates) {
     this.newEntry = { id: null, submission: '', trainingPartner: '', position: '', result: '' };
     this.errorMessage = 'Duplicates Detected';

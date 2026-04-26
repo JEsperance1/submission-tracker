@@ -47,7 +47,13 @@
             <option>Success</option>
             <option>Failed</option>
           </select></td> 
-        <td><button (click)="addNewEntry()">Add</button></td>
+        <td><button (click)="addNewEntry()">Add</button>
+        @if (errorMessage) {
+        <div class="error">
+        {{ errorMessage }}
+        </div>
+        }
+        </td>
       </tr>
 
       <!-- Data rows -->

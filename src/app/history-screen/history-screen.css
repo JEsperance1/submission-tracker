@@ -91,6 +91,10 @@ th, td {
   text-align: left;
 }
 
+.error {
+    color: red
+}
+
 th {
   background: #2575fc;
   color: white;

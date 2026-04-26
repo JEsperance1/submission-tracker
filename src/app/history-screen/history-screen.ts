@@ -30,6 +30,7 @@ export class HistoryScreen {
     editingId: number | null = null;
     originalEntry: Submission | null = null;
     searchTerm = '';
+    errorMessage = '';
     
     
 
@@ -37,6 +38,8 @@ export class HistoryScreen {
 constructor(private supabaseService: SupabaseService, private cdr: ChangeDetectorRef) {}
 newEntry: Submission = { id: null, submission: '', trainingPartner: '', position: '', result: '' }
 newSearchTerm: string = this.searchTerm;
+insertErrorMessage = this.errorMessage;
+
 
 
 
@@ -121,6 +124,7 @@ else {
 
 printSearchTerm() {
   console.log(this.searchTerm);
+  
 }
 
 //sign out
@@ -190,6 +194,7 @@ cancelEdit(submission: Submission) {
 }
 
  async addNewEntry() {
+  var hasDuplicates = false;
   const supabase = this.supabaseService.getClient();
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError || !user) {
@@ -211,8 +216,28 @@ if (this.newEntry.submission == '' || this.newEntry.trainingPartner == '' || thi
  console.error('Error adding submission:', 'Cannot have blank entries');
 }
 
-else {
+//i need to add duplication protection on this
+this.submissions.forEach((submission) => {
+if (submission.submission.toLowerCase() === this.newEntry.submission.toLowerCase() && 
+submission.trainingPartner.toLowerCase() === this.newEntry.trainingPartner.toLowerCase() && 
+submission.position.toLowerCase() === this.newEntry.position.toLowerCase() && 
+submission.result.toLowerCase() === this.newEntry.result.toLowerCase()) {
+  hasDuplicates = true;
+}
+});
 
+if (hasDuplicates) {
+    this.newEntry = { id: null, submission: '', trainingPartner: '', position: '', result: '' };
+    this.errorMessage = 'Duplicate Entries not Allowed';
+    this.cdr.detectChanges(); 
+
+    
+
+}
+
+
+//this block should execute if the entry meets add criteria
+else {
   const { data, error } = await supabase
     .from('submissions')
     .insert([insertObject])
@@ -237,6 +262,7 @@ else {
   }
 
   this.newEntry = { id: null, submission: '', trainingPartner: '', position: '', result: '' };
+  this.errorMessage = '';
     this.cdr.detectChanges(); 
 
 }

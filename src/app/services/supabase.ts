@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class SupabaseService {
-  private supabase: SupabaseClient;
+ supabase: SupabaseClient;
 
   constructor() {
     this.supabase = createClient(
@@ -19,6 +19,12 @@ export class SupabaseService {
 
     async signOut() {
   return await this.supabase.auth.signOut(); // now returns { error }
+
+
+
+
+
+
 }
   async getSubmissions() {
     const { data, error } = await this.supabase
@@ -32,6 +38,11 @@ export class SupabaseService {
 
     return data;
   }
+
+
+
+
+
   async deleteSubmission(id: number) {
   const { error } = await this.supabase
     .from('submissions')

@@ -7,6 +7,7 @@ import { DashboardScreen } from './dashboard-screen/dashboard-screen';
 import { StatsScreen } from './stats-screen/stats-screen';
 import { HistoryScreen } from './history-screen/history-screen';
 import { ProfileScreen } from './profile-screen/profile-screen';
+import { NewDataScreen } from './new-data-screen/new-data-screen'
 
 const authGuard = async () => {
   const supabase = inject(SupabaseService);
@@ -33,7 +34,8 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardScreen },
       { path: 'stats', component: StatsScreen },
       { path: 'history', component: HistoryScreen },
-      { path: 'profile', component: ProfileScreen }
+      { path: 'profile', component: ProfileScreen },
+      { path: 'new', component: NewDataScreen}
     ]
   },
 

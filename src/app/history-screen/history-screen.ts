@@ -52,11 +52,10 @@ this.printSearchTerm();
 }
 
 async loadSubmissions() {
-  this.printSearchTerm()
   const supabase = this.supabaseService.getClient();
 
   // get current user
-  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  const { data: { user }, error: userError } = await supabase.auth.getUser(); ///key line
   if (userError || !user) {
     console.error('Error getting current user:', userError);
     this.submissions = [];
@@ -64,9 +63,9 @@ async loadSubmissions() {
   }
 
 
-if (this.searchTerm == "") {
+if (this.searchTerm == "") { 
   // fetch only submissions for this user
-  const { data, error } = await supabase
+  const { data, error } = await supabase //key line
     .from('submissions')
     .select('*')
     .eq('user_id', user.id)   // filter by current user
@@ -78,7 +77,7 @@ if (this.searchTerm == "") {
     return;
   }
 
-  this.submissions = data.map((row: any) => ({
+  this.submissions = data.map((row: any) => ({ /////key line
     id: row.id,
     submission: row.submission,
     trainingPartner: row.training_partner,

@@ -228,7 +228,7 @@ submission.result.toLowerCase() === this.newEntry.result.toLowerCase()) {
 
 if (hasDuplicates) {
     this.newEntry = { id: null, submission: '', trainingPartner: '', position: '', result: '' };
-    this.errorMessage = 'Duplicate Entries not Allowed';
+    this.errorMessage = 'Duplicates Detected';
     this.cdr.detectChanges(); 
 
     

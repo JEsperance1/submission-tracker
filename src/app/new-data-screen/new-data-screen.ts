@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SupabaseService } from '../services/supabase';
 import { Routes, Router } from '@angular/router';
 
@@ -14,17 +14,13 @@ export class NewDataScreen {
 
   constructor(private supabaseService: SupabaseService, private router: Router)
   {}
-
-  async ngOnInit() {
-      this.fetchSomeDataForTable();
-      }
-
-
-
     ///makes a call to sql for some data
-    async fetchSomeDataForTable() {
-      const {data, error} = await this.supabaseService.supabase.from('submissions').select('*');
-      for
+    fetchSomeDataForTable() {
+      console.log(this.supabaseService.supabase.from('submissions').select('*'));
+
+
+
+
     }
 
 
